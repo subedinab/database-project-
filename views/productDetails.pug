@@ -1,0 +1,27 @@
+extend header 
+block bodyContent 
+    .row.wow.fadeIn
+    
+        .col-md-6.mb-4
+            img.img-fluid(src='https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg' alt='')
+        // Grid column
+        // Grid column
+        .col-md-6.mb-4
+            .p-4
+                .mb-3
+                h3 Product Details
+                p.lead.font-weight-bold Price
+                p=product.price
+                p.lead.font-weight-bold Description
+                p=product.description
+                
+            form(method="post" action="/cart")
+                div
+                    input.form-control.mb-1(type='number' name="quantity" value='1' aria-label='Search' style='width: 100px')
+                    input(type="number" name="product_id" value=`${product.id}` hidden)
+                    //- input(type="number" name="userId" value=`${user.id}` hidden)
+                <br>
+                div
+                    button.btn.btn-primary.btn-md.my-0.p.waves-effect.waves-light(type='submit') Add to cart
+                    i.fas.fa-shopping-cart.ml-1
+            // Content

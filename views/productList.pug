@@ -1,0 +1,126 @@
+extends header 
+block bodyContent
+        h2.text-center The Product List
+        button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModalLong')
+            | insert into tables
+        
+        .justify-content-center.text-center
+        if response[0]
+            table.table
+                thead
+                    tr
+                    th(scope='col') 
+                    each data in Object.keys(response[0])
+                        th(scope='col')=data
+                tbody
+                    each data in response
+                        tr
+                        th(scope='row')
+                        each value in Object.values(data)
+                            td=value
+                        td  
+                            button#productDelete.btn.btn-primary(data-product-id=`${data.id}`) delete
+                        td 
+                            button#productUpdate.btn-primary(href=`/product/${data.id}`, data-toggle='modal', data-target='#exampleModalLong2') Update
+        else 
+            h1 data not found
+
+
+        #exampleModalLong1.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLong1Title', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#exampleModalLong1Title.modal-title Modal title
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    .modal-body
+                        form
+                            .form-group
+                                label(for='formGroupExampleInput') ID
+                                input#formGroupExampleInput.form-control(type='text', placeholder='ID')
+                    .modal-footer
+                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary(type='button') Save changes
+        #exampleModalLong.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLongTitle', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#exampleModalLongTitle.modal-title Modal title
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    .modal-body
+                        form#product_insert(method='POST' action="/product")
+                            .row
+                                .col
+                                    label(for='inputEmail4') Product Name
+                                    input.form-control(type='text',name="product_name",placeholder='Product name')
+                                .col
+                                    label(for='inputEmail4') category id
+                                    input.form-control(type='text',name="category_id", placeholder='category id')
+                            .form-row
+                                .form-group.col-md-6
+                                    label(for='inputEmail4') description
+                                    input#inputEmail4.form-control(type='text',name="description" ,placeholder='description')
+                                .form-group.col-md-6
+                                    label(for='inputPassword4') supplier id
+                                    input#inputPassword4.form-control(type='supplier id',name="supplier_id", placeholder='suppplier id')
+                            .form-group
+                                    label(for='inputPassword4') user id
+                                    input#inputPassword4.form-control(type='user id', name="user_id",placeholder='user id')
+                                    label(for='phone') price
+                                    br
+                                    br
+                                    input#phone(type='number', name='price',min=200, placeholder='Rs. price')
+                            .modal-footer
+                                button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                                button.btn.btn-primary(type='submit') Save changes
+        #exampleModalLong2.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLong2Title', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#exampleModalLong2Title.modal-title Modal title
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    .modal-body
+                        form
+                        .form-group
+                            label(for='formGroupExampleInput') ID
+                            input#formGroupExampleInput.form-control(type='text', placeholder='ID')
+                            .row
+                                .col
+                                    label(for='inputEmail4') Product Name
+                                    input.form-control(type='text', placeholder='Product name')
+                                .col
+                                    label(for='inputEmail4') category id
+                                    input.form-control(type='text', placeholder='category id')
+                            .form-row
+                                .form-group.col-md-6
+                                    label(for='inputEmail4') description
+                                    input#inputEmail4.form-control(type='text', placeholder='description')
+                                .form-group.col-md-6
+                                    label(for='inputPassword4') supplier id
+                                    input#inputPassword4.form-control(type='supplier id', placeholder='suppplier id')
+                                .form-group
+                                    label(for='inputPassword4') user id
+                                    input#inputPassword4.form-control(type='user id', placeholder='user id')
+                                    label(for='phone') price
+                                    br
+                                    br
+                                    input#phone(type='number', name='phone', placeholder='Rs. price')
+                    .modal-footer
+                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary(type='button') Save changes
+
+
+        //- #exampleModalLong3.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLong3Title', aria-hidden='true')
+        //-     .modal-dialog(role='document')
+        //-         .modal-content
+        //-             .modal-header
+        //-                 h5#exampleModalLong3Title.modal-title Product List
+        //-                 button.close(type='button', data-dismiss='modal', aria-label='Close')
+        //-                 span(aria-hidden='true') &times;
+        //-             .modal-body
+                           
+        //-             .modal-footer
+        //-                 button.btn.btn-secondary(type='button', data-dismiss='modal') close
+        //-                 button.btn.btn-primary(type='button') Save changes

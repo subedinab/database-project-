@@ -1,0 +1,75 @@
+extends base 
+block content
+        h2.text-center The Product List
+        button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModalLong')
+            | insert into tables
+        //show    
+        .justify-content-center.text-center
+        if response[0]
+            table.table
+                thead
+                    tr
+                    th(scope='col') 
+                    each data in Object.keys(response[0])
+                        th(scope='col')=data
+                tbody
+                    each data in response
+                        tr
+                        th(scope='row')
+                        each value in Object.values(data)
+                            td=value
+                        td  
+                            button#productDelete.btn.btn-primary(data-product-id=`${data.id}`) delete
+                        td 
+                            button#productUpdate.btn-primary(href=`/product/${data.id}`, data-toggle='modal', data-target='#exampleModalLong2') Update
+        else 
+            h1 data not found
+        //insert
+        #exampleModalLong.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLongTitle' aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#exampleModalLongTitle.modal-title Modal title
+                        button.close(type='button' data-dismiss='modal' aria-label='Close')
+                            span(aria-hidden='true') &times;
+                    .modal-body
+                    form
+                        .row
+                        .col
+                            input.form-control(type='text' placeholder='First name')
+                        .col
+                            input.form-control(type='text' placeholder='Last name')
+                        .form-row
+                        .form-group.col-md-6
+                            label(for='inputEmail4') Email
+                            input#inputEmail4.form-control(type='email' placeholder='Email')
+                        .form-group.col-md-6
+                            label(for='inputPassword4') Password
+                            input#inputPassword4.form-control(type='password' placeholder='Password')
+                        .form-group
+                        label(for='inputAddress') Address
+                        input#inputAddress.form-control(type='text' placeholder='1234 Main St')
+                        label(for='phone') Enter a phone number:
+                        br
+                        br
+                        input#phone(type='tel' name='phone' placeholder='9847635885')
+                    .modal-footer
+                    button.btn.btn-secondary(type='button' data-dismiss='modal')
+                        | Close
+                    button.btn.btn-primary(type='button') Save changes
+            //delete
+        #exampleModalLong1.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLong1Title', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#exampleModalLong1Title.modal-title Modal title
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') &times;
+                    .modal-body
+                        form
+                            .form-group
+                                label(for='formGroupExampleInput') ID
+                                input#formGroupExampleInput.form-control(type='text', placeholder='ID')
+                    .modal-footer
+                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary(type='button') Save changes    

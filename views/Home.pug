@@ -1,0 +1,28 @@
+extend header
+block bodyContent
+    header.bg-dark.py-5
+        .container.px-4.px-lg-5.my-5
+            .text-center.text-white
+                h1.display-4.fw-bolder Shop in style
+                p.lead.fw-normal.text-white-50.mb-0 With this shop hompeage template
+
+    
+    section.py-5
+        .container.px-4.px-lg-5.mt-5
+            .row.gx-4.gx-lg-5.row-cols-2.row-cols-md-3.row-cols-xl-4.justify-content-center
+                each product in products
+                    .col-sm-3
+                        .card.h-100
+                            // Product image
+                            img.card-img-top(src='https://techbroll.com/wp-content/uploads/2019/12/Predator-Helios-300-PH315-52-preview.png', alt='...')
+                            // Product details
+                            .card-body.p-4
+                                .text-center
+                                    // Product name
+                                    h5.fw-bolder=product.product_name
+                                    // Product price
+                                    h5.fw-bolder=product.price
+                            // Product actions
+                            .card-footer.p-4.pt-0.border-top-0.bg-transparent
+                                .text-center
+                                    a.btn.btn-outline-dark.mt-auto(href=`/product/${product.id}`) View options
